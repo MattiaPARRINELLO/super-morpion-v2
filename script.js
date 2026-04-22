@@ -134,12 +134,12 @@ function hasWinningMove(smallBoard, r) {
 
 function countPotentialLines(board, r) {
     const lines = [
-        [0,1,2],[3,4,5],[6,7,8],
-        [0,3,6],[1,4,7],[2,5,8],
-        [0,4,8],[2,4,6],
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6],
     ];
     let score = 0;
-    for (const [a,b,c] of lines) {
+    for (const [a, b, c] of lines) {
         const pieces = [board[a], board[b], board[c]];
         const mine = pieces.filter(p => p === r).length;
         const theirs = pieces.filter(p => p && p !== r).length;
@@ -173,9 +173,9 @@ function evaluateMove(s, move) {
     }
 
     if (smallIndex === 4) score += 3;
-    else if ([0,2,6,8].includes(smallIndex)) score += 1;
+    else if ([0, 2, 6, 8].includes(smallIndex)) score += 1;
     if (bigIndex === 4) score += 2;
-    else if ([0,2,6,8].includes(bigIndex)) score += 1;
+    else if ([0, 2, 6, 8].includes(bigIndex)) score += 1;
 
     // Où envoie-t-on l'adversaire ?
     const nextTarget = smallIndex;
@@ -358,34 +358,34 @@ const TUTORIAL_STEPS = [
         bigBoard: Array(9).fill(''),
         smallBoards: Array.from({ length: 9 }, () => Array(9).fill('')),
         completedCells: [], jokerMode: true, lastPlayed: -1, turn: 'X',
-        highlightBig: [0,1,2,3,4,5,6,7,8], dimBig: [],
+        highlightBig: [0, 1, 2, 3, 4, 5, 6, 7, 8], dimBig: [],
     },
     {
         title: 'La règle clé 🔗',
         text: '❌ joue dans la <b>case n°5</b> (centre) de la grille 1. Cette position <b>détermine la prochaine grille</b> : ⭕ doit jouer dans la <b>grille n°5</b> (centrale), surlignée en violet.',
         bigBoard: Array(9).fill(''),
-        smallBoards: (() => { const b = Array.from({length:9},()=>Array(9).fill('')); b[0][4]='X'; return b; })(),
+        smallBoards: (() => { const b = Array.from({ length: 9 }, () => Array(9).fill('')); b[0][4] = 'X'; return b; })(),
         completedCells: [], jokerMode: false, lastPlayed: 4, turn: 'O',
-        highlightBig: [4], dimBig: [0,1,2,3,5,6,7,8],
+        highlightBig: [4], dimBig: [0, 1, 2, 3, 5, 6, 7, 8],
         newPiece: { big: 0, small: 4 },
     },
     {
         title: 'Jouer dans la bonne grille',
         text: '⭕ <b>doit</b> jouer dans la grille n°5 (en violet). Il choisit la case n°3 (haut à droite) → envoie ❌ dans la <b>grille n°3</b>. Chaque coup contrôle où va l\'adversaire !',
         bigBoard: Array(9).fill(''),
-        smallBoards: (() => { const b = Array.from({length:9},()=>Array(9).fill('')); b[0][4]='X'; b[4][2]='O'; return b; })(),
+        smallBoards: (() => { const b = Array.from({ length: 9 }, () => Array(9).fill('')); b[0][4] = 'X'; b[4][2] = 'O'; return b; })(),
         completedCells: [], jokerMode: false, lastPlayed: 2, turn: 'X',
-        highlightBig: [2], dimBig: [0,1,3,4,5,6,7,8],
+        highlightBig: [2], dimBig: [0, 1, 3, 4, 5, 6, 7, 8],
         newPiece: { big: 4, small: 2 },
     },
     {
         title: 'Gagner une petite grille',
         text: 'Aligne <b>3 cases</b> dans une petite grille pour la <b>remporter</b> ! Elle est remplacée par ton grand symbole. ❌ vient d\'aligner la colonne gauche de la grille 1 → ❌ <b>remporte la grille 1 !</b>',
-        bigBoard: ['X','','','','','','','',''],
+        bigBoard: ['X', '', '', '', '', '', '', '', ''],
         smallBoards: (() => {
-            const b = Array.from({length:9},()=>Array(9).fill(''));
-            b[0][0]='X'; b[0][3]='X'; b[0][6]='X'; b[0][1]='O'; b[0][4]='O';
-            b[4][2]='O'; b[2][5]='X';
+            const b = Array.from({ length: 9 }, () => Array(9).fill(''));
+            b[0][0] = 'X'; b[0][3] = 'X'; b[0][6] = 'X'; b[0][1] = 'O'; b[0][4] = 'O';
+            b[4][2] = 'O'; b[2][5] = 'X';
             return b;
         })(),
         completedCells: [0], jokerMode: true, lastPlayed: 6, turn: 'O',
@@ -394,41 +394,41 @@ const TUTORIAL_STEPS = [
     {
         title: 'Mode Joker 🃏',
         text: '⭕ joue dans la case n°1 → renvoie ❌ dans la <b>grille n°1</b>. Mais ❌ l\'a déjà gagnée ! ❌ est en <b>mode Joker</b> : il peut jouer dans <b>n\'importe quelle grille libre</b>.',
-        bigBoard: ['X','','','','','','','',''],
+        bigBoard: ['X', '', '', '', '', '', '', '', ''],
         smallBoards: (() => {
-            const b = Array.from({length:9},()=>Array(9).fill(''));
-            b[0][0]='X'; b[0][3]='X'; b[0][6]='X'; b[0][1]='O'; b[0][4]='O';
-            b[4][2]='O'; b[2][5]='X'; b[2][0]='O';
+            const b = Array.from({ length: 9 }, () => Array(9).fill(''));
+            b[0][0] = 'X'; b[0][3] = 'X'; b[0][6] = 'X'; b[0][1] = 'O'; b[0][4] = 'O';
+            b[4][2] = 'O'; b[2][5] = 'X'; b[2][0] = 'O';
             return b;
         })(),
         completedCells: [0], jokerMode: true, lastPlayed: 0, turn: 'X',
-        highlightBig: [1,2,3,4,5,6,7,8], dimBig: [],
+        highlightBig: [1, 2, 3, 4, 5, 6, 7, 8], dimBig: [],
         newPiece: { big: 2, small: 0 },
     },
     {
         title: 'Remporter la partie 🏆',
         text: 'Pour <b>gagner</b>, aligne 3 petites grilles gagnées sur la grande — comme au morpion classique ! ❌ aligne les grilles <b>1, 5 et 9 en diagonale</b> → Victoire !',
-        bigBoard: ['X','O','','O','X','','','','X'],
-        smallBoards: Array.from({length:9},()=>Array(9).fill('')),
-        completedCells: [0,1,3,4,8], jokerMode: true, lastPlayed: 8, turn: 'O',
-        highlightBig: [0,4,8], dimBig: [1,2,3,5,6,7],
+        bigBoard: ['X', 'O', '', 'O', 'X', '', '', '', 'X'],
+        smallBoards: Array.from({ length: 9 }, () => Array(9).fill('')),
+        completedCells: [0, 1, 3, 4, 8], jokerMode: true, lastPlayed: 8, turn: 'O',
+        highlightBig: [0, 4, 8], dimBig: [1, 2, 3, 5, 6, 7],
     },
     {
         title: 'Pense à l\'avance 💡',
         text: 'Avant chaque coup, demande-toi : <b>dans quelle grille est-ce que j\'envoie l\'adversaire ?</b> S\'il y est à l\'aise, il marquera un point et choisira ensuite <b>où toi tu dois jouer</b>. Anticipe !',
-        bigBoard: ['X','','','','','','','','O'],
+        bigBoard: ['X', '', '', '', '', '', '', '', 'O'],
         smallBoards: (() => {
-            const b = Array.from({length:9},()=>Array(9).fill(''));
-            b[1][4]='X'; b[1][0]='O'; b[1][6]='X';
-            b[2][3]='O'; b[2][4]='X'; b[2][7]='O';
-            b[3][1]='X'; b[3][5]='O'; b[3][3]='X';
-            b[4][0]='O'; b[4][4]='X'; b[4][2]='O'; b[4][8]='X';
-            b[5][5]='X'; b[5][3]='O'; b[5][0]='X';
-            b[6][7]='O'; b[6][2]='X'; b[7][4]='X'; b[7][0]='O';
+            const b = Array.from({ length: 9 }, () => Array(9).fill(''));
+            b[1][4] = 'X'; b[1][0] = 'O'; b[1][6] = 'X';
+            b[2][3] = 'O'; b[2][4] = 'X'; b[2][7] = 'O';
+            b[3][1] = 'X'; b[3][5] = 'O'; b[3][3] = 'X';
+            b[4][0] = 'O'; b[4][4] = 'X'; b[4][2] = 'O'; b[4][8] = 'X';
+            b[5][5] = 'X'; b[5][3] = 'O'; b[5][0] = 'X';
+            b[6][7] = 'O'; b[6][2] = 'X'; b[7][4] = 'X'; b[7][0] = 'O';
             return b;
         })(),
-        completedCells: [0,8], jokerMode: false, lastPlayed: 3, turn: 'X',
-        highlightBig: [3], dimBig: [0,1,2,4,5,6,7,8],
+        completedCells: [0, 8], jokerMode: false, lastPlayed: 3, turn: 'X',
+        highlightBig: [3], dimBig: [0, 1, 2, 4, 5, 6, 7, 8],
     },
 ];
 
@@ -508,9 +508,9 @@ function hideTutorial() {
 
 function checkWin3x3(board) {
     const lines = [
-        [0,1,2],[3,4,5],[6,7,8],
-        [0,3,6],[1,4,7],[2,5,8],
-        [0,4,8],[2,4,6],
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6],
     ];
     for (const [a, b, c] of lines) {
         if (board[a] && board[a] === board[b] && board[a] === board[c]) return board[a];
@@ -912,7 +912,7 @@ function setupUi() {
             showToast(`Salle ${roomId} créée. Vous êtes ${role}.`, 'success');
             // Copie automatique du lien
             const url = `${location.origin}${location.pathname}?room=${roomId}`;
-            navigator.clipboard.writeText(url).catch(() => {});
+            navigator.clipboard.writeText(url).catch(() => { });
         });
     });
 
