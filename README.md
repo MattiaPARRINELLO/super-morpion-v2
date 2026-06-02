@@ -1,96 +1,55 @@
-# Super Morpion V2 — Jeu en ligne (Node.js + Socket.IO)
+<div align="center">
+  <h1>❌ Super-Morpion-V2</h1>
+  <p><strong>Super Tic-Tac-Toe multijoueur en temps réel.</strong></p>
 
-Ce projet permet de jouer au Super Morpion à deux joueurs en ligne. Le serveur gère des salles, la synchronisation d’état en temps réel, la reconnexion, et la reprise après rafraîchissement. Aucune base de données n’est nécessaire: l’état est persisté dans un fichier `rooms.json`.
+![Node](https://img.shields.io/badge/Node.js-18-339933?logo=node.js)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-4-010101?logo=socket.io)
+![Licence](https://img.shields.io/badge/licence-MIT-green)
+</div>
 
-## Prérequis
-- Node.js 18+
+---
 
-## Installation
+## 📋 Sommaire
+- [Présentation](#présentation)
+- [Fonctionnalités](#fonctionnalités)
+- [Technologies](#technologies)
+- [Auteur](#auteur)
 
+---
+
+## 🎯 Présentation
+Jeu de Super Tic-Tac-Toe en ligne multijoueur. Communication en temps réel via Socket.IO, gestion de parties privées, reconnexion automatique, et validation des coups côté serveur.
+
+---
+
+## ✨ Fonctionnalités
+- ✅ Multijoueur en temps réel (Socket.IO)
+- ✅ Système de salons privés
+- ✅ Reconnexion automatique
+- ✅ Validation serveur des coups
+- ✅ Thème clair/sombre
+
+---
+
+## 🚀 Installation
 ```bash
+git clone https://github.com/MattiaPARRINELLO/Super-Morpion-V2.git
+cd Super-Morpion-V2
 npm install
-```
-
-## Lancer en local
-
-```bash
 npm start
 ```
 
-Le serveur démarre sur http://localhost:3000
+---
 
-## Déploiement (serveur Linux)
+## 🛠️ Technologies
+| Technologie | Rôle |
+|-------------|------|
+| Node.js | Serveur backend |
+| Socket.IO | Temps réel |
+| JavaScript | Frontend |
 
-Variables utiles:
-- PORT: port HTTP (ex: 3001)
-- ROOM_TTL_MS: durée d’inactivité avant suppression de la salle (ms). Par défaut 1800000 (30 min)
-- LOG_FILE: chemin d’un fichier de log (ex: /var/log/super-morpion.log)
+---
 
-Exemples:
-
-Service simple (tmux/screen/nohup)
-
-```
-PORT=3001 LOG_FILE=/var/log/super-morpion.log node server.js
-```
-
-Avec pm2 (recommandé)
-
-```
-pm2 start server.js --name super-morpion \
-  --time \
-  --env PORT=3001,ROOM_TTL_MS=1800000,LOG_FILE=/var/log/super-morpion.log
-pm2 logs super-morpion
-```
-
-Logs
-- Sans LOG_FILE: logs sur stdout/stderr (visible via pm2 logs ou journalctl selon votre superviseur)
-- Avec LOG_FILE: logs écrits dans le fichier choisi (créé/appended). Exemple de lignes:
-```
-[2025-10-02T14:00:00.000Z] Server listening on http://0.0.0.0:3001
-[2025-10-02T14:00:10.000Z] socket connect {"id":"...","addr":"..."}
-[2025-10-02T14:00:15.000Z] createRoom ok {"roomId":"ABCD12","role":"X","by":"..."}
-```
-
-## Tester à deux joueurs (local ou réseau)
-
-- Ouvrez deux onglets/navigateurs:
-  - Onglet A: http://localhost:3000
-  - Onglet B: http://localhost:3000
-- Dans A:
-  - Entrez un pseudo (optionnel)
-  - Cliquez « Créer une salle » (un code s’affiche dans le champ Code Salle)
-  - Cliquez « Copier le lien » et collez-le dans l’onglet B
-- Dans B:
-  - Validez le champ « Code Salle » si pré-rempli, sinon copiez le code et cliquez « Rejoindre »
-- Jouez chacun votre tour. Les coups sont synchronisés.
-
-### Reprise après rafraîchissement
-- Rafraîchissez un des onglets (Ctrl+R). La page se reconnecte et recharge l’état de la partie automatiquement.
-- Vous pouvez fermer/revenir tant que le serveur reste en cours d’exécution; l’état est conservé.
-
-## Robustesse et comportements gérés
-- Salles avec 2 rôles: X et O (observateurs supplémentaires autorisés, mais ne jouent pas).
-- Validation serveur des coups: tour, cible (joker/dernière sous-grille), cases déjà prises, sous-grilles gagnées.
-- Déconnexions/reconnexions: les joueurs quittant sont libérés, mais l’état de la salle est conservé.
-- Persistance légère: `rooms.json` sauvegarde l’état des salles; redémarrer le serveur conserve les parties.
-- Fin de partie: victoire ou match nul remet le plateau à zéro en conservant les scores.
-
-## Déploiement simple
-- Hébergez ce dossier sur un serveur Node (VPS, etc.).
-- Assurez l’accès au port 3000 (ou définissez `PORT`).
-- Lancez: `npm start`
-- Accédez via: `http://<votre-ip>:3000`
-
-## Structure
-- `server.js`: serveur Express + Socket.IO, gestion des salles et logique de jeu côté serveur
-- `index.html`, `createPage.js`, `styles.css`: interface
-- `script.js`: client Socket.IO, rendu et interactions
-
-## Astuces
-- Utilisez le bouton « Copier le lien » pour inviter l’adversaire.
-- Le thème clair/sombre reste fonctionnel et sauvegardé dans le navigateur.
-
-```
-MIT License
-```
+<div align="center">
+  <sub>Fait avec ❤️ par <a href="https://github.com/MattiaPARRINELLO">MattiaPARRINELLO</a></sub>
+</div>
