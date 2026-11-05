@@ -1,55 +1,50 @@
-<div align="center">
-  <h1>❌ Super-Morpion-V2</h1>
-  <p><strong>Super Tic-Tac-Toe multijoueur en temps réel.</strong></p>
+# Super Morpion
 
-![Node](https://img.shields.io/badge/Node.js-18-339933?logo=node.js)
-![Socket.IO](https://img.shields.io/badge/Socket.IO-4-010101?logo=socket.io)
-![Licence](https://img.shields.io/badge/licence-MIT-green)
-</div>
+Le **Super Tic-Tac-Toe** multijoueur, en temps réel, dans le navigateur.
 
----
+Chaque case de la grille principale contient elle-même un morpion : le coup joué
+détermine dans quel sous-plateau l'adversaire doit répondre. C'est simple à
+apprendre, beaucoup moins à maîtriser.
 
-## 📋 Sommaire
-- [Présentation](#présentation)
-- [Fonctionnalités](#fonctionnalités)
-- [Technologies](#technologies)
-- [Auteur](#auteur)
+**Jouer : [supermrp.mattiaparrinello.fr](https://supermrp.mattiaparrinello.fr/)**
 
----
+## Fonctionnalités
 
-## 🎯 Présentation
-Jeu de Super Tic-Tac-Toe en ligne multijoueur. Communication en temps réel via Socket.IO, gestion de parties privées, reconnexion automatique, et validation des coups côté serveur.
+- Multijoueur en temps réel (Socket.IO), sans compte
+- Salons privés partagés par lien
+- Reconnexion automatique en cas de coupure
+- Validation des coups côté serveur, le client ne fait pas autorité
+- Thème clair et sombre
 
----
+## Stack
 
-## ✨ Fonctionnalités
-- ✅ Multijoueur en temps réel (Socket.IO)
-- ✅ Système de salons privés
-- ✅ Reconnexion automatique
-- ✅ Validation serveur des coups
-- ✅ Thème clair/sombre
+| Technologie | Rôle |
+|---|---|
+| Node.js + Express | Serveur et fichiers statiques |
+| Socket.IO | Synchronisation temps réel |
+| JavaScript vanilla | Interface, sans framework |
 
----
+## Lancer en local
 
-## 🚀 Installation
 ```bash
-git clone https://github.com/MattiaPARRINELLO/Super-Morpion-V2.git
-cd Super-Morpion-V2
+git clone https://github.com/MattiaPARRINELLO/super-morpion-v2.git
+cd super-morpion-v2
 npm install
 npm start
 ```
 
----
+Le serveur écoute sur le port défini par `PORT` (3000 par défaut).
 
-## 🛠️ Technologies
-| Technologie | Rôle |
-|-------------|------|
-| Node.js | Serveur backend |
-| Socket.IO | Temps réel |
-| JavaScript | Frontend |
+## Structure
 
----
+```
+server.js       serveur Express + logique Socket.IO
+script.js       client : rendu du plateau et événements
+index.html      page de jeu
+createPage.js   génération de la page
+styles.css      styles, thèmes clair et sombre
+```
 
-<div align="center">
-  <sub>Fait avec ❤️ par <a href="https://github.com/MattiaPARRINELLO">MattiaPARRINELLO</a></sub>
-</div>
+## Licence
+
+MIT, voir [LICENSE](./LICENSE).

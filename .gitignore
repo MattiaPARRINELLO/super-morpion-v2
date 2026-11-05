@@ -1,3 +1,5 @@
 node_modules/
 rooms.json
 logs/
+apikey.json
+.env
